@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CivicFix — Smart Community Complaint Portal. Report local civic issues in seconds and track progress from verification to resolution.">
+  <title>CivicFix — Smart Community Complaint Portal</title>
+  
+  <!-- Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Core Design System Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231d4ed8'%3E%3Cpath d='M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm-2 15l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z'/%3E%3C/svg%3E">
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <!-- ======================================================================
+         1. SITE HEADER & NAVIGATION
+         ====================================================================== -->
+    <header class="site-header">
+      <div class="container">
+        <!-- Logo Branding -->
+        <a href="#landing" class="brand-link" data-view-target="landing" aria-label="CivicFix Home">
+          <div class="brand-logo-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <span>CivicFix</span>
+          <span class="brand-tag">PORTAL</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="#landing" class="nav-link is-active" data-view="landing" data-view-target="landing">Home</a>
+          <a href="#report" class="nav-link" data-view="report" data-view-target="report">Report Issue</a>
+          <a href="#track" class="nav-link" data-view="track" data-view-target="track">Track Complaint</a>
+          <a href="#dashboard" class="nav-link" data-view="dashboard" data-view-target="dashboard">Citizen Dashboard</a>
+          <a href="#admin" class="nav-link" data-view="admin" data-view-target="admin">Admin Console</a>
+          <a href="#about" class="nav-link" data-view="about" data-view-target="about">How It Works</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button type="button" class="btn btn-sm btn-primary header-cta-desktop" data-view-target="report">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Report Issue
+          </button>
+          
+          <button type="button" class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="mobile-drawer-backdrop" id="mobile-nav-backdrop"></div>
+      <div class="mobile-drawer-panel">
+        <div class="mobile-drawer-head">
+          <div class="brand-link">
+            <div class="brand-logo-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <span>CivicFix</span>
+          </div>
+          <button type="button" class="modal-close-trigger" id="mobile-nav-close" aria-label="Close menu">&times;</button>
+        </div>
+
+        <div class="mobile-drawer-links">
+          <a href="#landing" class="mobile-nav-link" data-view-target="landing">Home <span>&rarr;</span></a>
+          <a href="#report" class="mobile-nav-link" data-view-target="report">Report an Issue <span>&rarr;</span></a>
+          <a href="#track" class="mobile-nav-link" data-view-target="track">Track Complaints <span>&rarr;</span></a>
+          <a href="#dashboard" class="mobile-nav-link" data-view-target="dashboard">Citizen Dashboard <span>&rarr;</span></a>
+          <a href="#admin" class="mobile-nav-link" data-view-target="admin">Admin Operations <span>&rarr;</span></a>
+          <a href="#about" class="mobile-nav-link" data-view-target="about">How It Works <span>&rarr;</span></a>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full mt-auto" data-view-target="report">
+          + Report an Issue Now
+        </button>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT (SPA VIEWS)
+         ====================================================================== -->
+    <main class="main-content">
+      
+      <!-- VIEW 1: LANDING / HOME -->
+      <section id="view-landing" class="app-view is-visible" aria-label="Home page">
+        
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <div class="container">
+            <div class="hero-grid">
+              <div class="hero-content">
+                <div class="hero-badge">
+                  <span class="hero-badge-dot"></span>
+                  <span>Civic Governance & Citizen Redressal Platform</span>
+                </div>
+                <h1 class="hero-title">
+                  Report. Track. <span>Improve Your Community.</span>
+                </h1>
+                <p class="hero-lead">
+                  Report civic issues in seconds and track their progress from submission to on-ground resolution. Powered by municipal transparency.
+                </p>
+                <div class="hero-cta-group">
+                  <button type="button" class="btn btn-primary btn-lg" data-view-target="report">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    Report an Issue
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-lg" data-view-target="track">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Track a Complaint
+                  </button>
+                </div>
+              </div>
+
+              <!-- Interactive Hero Visual -->
+              <div class="hero-visual">
+                <div class="hero-visual-card">
+                  <div class="hero-visual-header">
+                    <div>
+                      <span class="text-xs text-muted font-mono">LIVE INCIDENT DISPATCH</span>
+                      <h4 class="text-sm">Ward 14 • Infrastructure Operations</h4>
+                    </div>
+                    <span class="status-pill status-progress"><span class="status-dot"></span>Active Queue</span>
+                  </div>
+
+                  <div class="workflow-mini-pipeline">
+                    <div class="workflow-mini-step">
+                      <div class="step-num">&#10003;</div>
+                      <div class="step-meta">
+                        <strong>Citizen Report Registered</strong>
+                        <span>CF-2026-48291 • Sector 14 Potholes</span>
+                      </div>
+                    </div>
+                    <div class="workflow-mini-step">
+                      <div class="step-num">&#10003;</div>
+                      <div class="step-meta">
+                        <strong>Ward Inspector Scrutiny</strong>
+                        <span>Verified & Assigned to Road Wing</span>
+                      </div>
+                    </div>
+                    <div class="workflow-mini-step active">
+                      <div class="step-num">3</div>
+                      <div class="step-meta">
+                        <strong>Ground Crew Dispatched</strong>
+                        <span>Bitumen patching team on-site</span>
+                      </div>
+                    </div>
+                    <div class="workflow-mini-step">
+                      <div class="step-num">4</div>
+                      <div class="step-meta">
+                        <strong>Citizen Verification & Resolution</strong>
+                        <span>Resolution proof & closed file</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Statistics Bar (Calculated directly from LocalStorage) -->
+        <div class="stats-section">
+          <div class="container">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-icon blue">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-number" id="stat-total-complaints">12</span>
+                  <span class="stat-label">Total Complaints</span>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <div class="stat-icon green">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-number" id="stat-resolved-complaints">4</span>
+                  <span class="stat-label">Resolved Issues</span>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <div class="stat-icon amber">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-number" id="stat-progress-complaints">3</span>
+                  <span class="stat-label">In Progress</span>
+                </div>
+              </div>
+
+              <div class="stat-item">
+                <div class="stat-icon purple">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-number" id="stat-pending-complaints">5</span>
+                  <span class="stat-label">Pending Review</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How CivicFix Works Section -->
+        <div class="section-block">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-tag">Process Transparency</span>
+              <h2 class="section-title">How CivicFix Works</h2>
+              <p class="section-subtitle">
+                A structured, four-step civic redressal pipeline connecting citizens directly with municipal response engineers.
+              </p>
+            </div>
+
+            <div class="how-it-works-grid">
+              <div class="step-card">
+                <div class="step-badge-num">1</div>
+                <h3>1. Report</h3>
+                <p>Submit your complaint in seconds with photos, locality tags, and severity level. Instant unique tracking ID issued.</p>
+              </div>
+
+              <div class="step-card">
+                <div class="step-badge-num">2</div>
+                <h3>2. Verification</h3>
+                <p>The municipal ward control center verifies the issue and assigns it to the specialized engineering department.</p>
+              </div>
+
+              <div class="step-card">
+                <div class="step-badge-num">3</div>
+                <h3>3. Resolution</h3>
+                <p>Ground maintenance crew is deployed with timestamped progress milestones visible to the citizen.</p>
+              </div>
+
+              <div class="step-card">
+                <div class="step-badge-num">4</div>
+                <h3>4. Improved</h3>
+                <p>Quality check completed, complaint closed with photographic proof, and transparent public audit record updated.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Issue Categories Section -->
+        <div class="section-block" style="background-color: var(--white); border-top: 1px solid var(--neutral-200); border-bottom: 1px solid var(--neutral-200);">
+          <div class="container">
+            <div class="section-head">
+              <span class="section-tag">Municipal Domains</span>
+              <h2 class="section-title">Supported Issue Categories</h2>
+              <p class="section-subtitle">
+                From drinking water pipelines to streetlight failures, CivicFix routes grievances to the responsible departments.
+              </p>
+            </div>
+
+            <div class="categories-grid">
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                </div>
+                <h4>Water Supply</h4>
+                <p>Pipeline leakages, low pressure, turbid supply, contaminated drinking water.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="3"/></svg>
+                </div>
+                <h4>Sanitation</h4>
+                <p>Public toilet maintenance, open defecation spots, sanitation hygiene lapses.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19L9 5h6l5 14H4z"/><line x1="12" y1="9" x2="12" y2="11"/><line x1="12" y1="14" x2="12" y2="16"/></svg>
+                </div>
+                <h4>Roads & Potholes</h4>
+                <p>Crater potholes, sunken asphalt, damaged footpaths, speed breaker repairs.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h4>Electricity</h4>
+                <p>Sparking transformers, dangling live wires, feeder breaker tripping.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6l2 7H7l2-7z"/><path d="M12 9v13"/><path d="M9 22h6"/><path d="M5 9h14"/></svg>
+                </div>
+                <h4>Streetlights</h4>
+                <p>Dark lamp stretches, broken luminaire poles, faulty automatic timers.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                </div>
+                <h4>Garbage Collection</h4>
+                <p>Overflowing dumper bins, missed door-to-door lifting, illegal debris dump.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="10" y1="4" x2="10" y2="20"/></svg>
+                </div>
+                <h4>Drainage</h4>
+                <p>Choked stormwater culverts, backflowing sewer lines, street waterlogging.</p>
+              </div>
+
+              <div class="category-card" data-view-target="report">
+                <div class="cat-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h4>Public Safety</h4>
+                <p>Uncovered manholes, fallen tree limbs, precarious building parapets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Community Issues Section -->
+        <div class="section-block">
+          <div class="container">
+            <div class="flex-between align-center mb-4">
+              <div>
+                <span class="section-tag">Public Ledger</span>
+                <h2 class="section-title">Recent Community Complaints</h2>
+              </div>
+              <button type="button" class="btn btn-outline-primary" data-view-target="dashboard">
+                View All Complaints &rarr;
+              </button>
+            </div>
+
+            <!-- Dynamic Cards populated via LocalStorage -->
+            <div class="recent-issues-grid" id="landing-recent-cards">
+              <!-- Populated via App.renderRecentIssues() -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust & Transparency Section -->
+        <div class="section-block pt-0">
+          <div class="container">
+            <div class="trust-banner">
+              <div>
+                <span class="text-teal-400 text-xs font-bold uppercase letter-spacing-1">Public Accountability</span>
+                <h3>Citizen Trust Through Full Transparency</h3>
+                <p>
+                  Every reported issue receives a non-fungible tracking record with exact audit timestamps, assigning officers, and progress notes. No lost paperwork, no bureaucratic dead ends.
+                </p>
+                <div class="mt-4 flex-gap-2">
+                  <button type="button" class="btn btn-secondary" data-view-target="dashboard">
+                    Explore Public Dashboard
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary" style="color: #fff; border-color: rgba(255,255,255,0.3);" data-view-target="about">
+                    Learn About SLA Guarantees
+                  </button>
+                </div>
+              </div>
+
+              <div class="trust-metrics">
+                <div class="trust-metric-box">
+                  <strong id="stat-resolution-rate">75%</strong>
+                  <span>Municipal Resolution Rate</span>
+                </div>
+                <div class="trust-metric-box">
+                  <strong>48 Hours</strong>
+                  <span>Average First-Response SLA</span>
+                </div>
+                <div class="trust-metric-box">
+                  <strong>100%</strong>
+                  <span>Open Citizen Visibility</span>
+                </div>
+                <div class="trust-metric-box">
+                  <strong>24/7</strong>
+                  <span>Civic Tracking Access</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- VIEW 2: REPORT AN ISSUE -->
+      <section id="view-report" class="app-view" aria-label="Report a community complaint">
+        <div class="container container-narrow section-block">
+          <div class="text-center mb-4">
+            <span class="section-tag">Citizen Grievance Redressal</span>
+            <h1 class="section-title">Report an Issue</h1>
+            <p class="section-subtitle">
+              Provide specific information below. Your grievance will be immediately forwarded to the municipal control desk with a unique tracking code.
+            </p>
+          </div>
+
+          <div class="form-card-container">
+            <form id="report-complaint-form" novalidate>
+              
+              <!-- Citizen Information -->
+              <h3 class="text-sm font-bold text-muted uppercase mb-3">1. Citizen Contact Details</h3>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="report-name" class="form-label">Full Name <span class="req">*</span></label>
+                  <input type="text" id="report-name" class="form-control" placeholder="e.g. Ramesh Kumar" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="report-email" class="form-label">Email Address <span class="req">*</span></label>
+                  <input type="email" id="report-email" class="form-control" placeholder="e.g. ramesh@example.com" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="report-phone" class="form-label">Mobile Phone Number <span class="req">*</span></label>
+                <input type="tel" id="report-phone" class="form-control" placeholder="e.g. 9876543210 (10 digits)" required maxlength="10">
+                <small class="text-xs text-muted mt-1">Used for municipal SMS updates and on-site crew coordination.</small>
+              </div>
+
+              <!-- Issue Information -->
+              <h3 class="text-sm font-bold text-muted uppercase mt-4 mb-3">2. Issue Classification & Details</h3>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="report-category" class="form-label">Issue Category <span class="req">*</span></label>
+                  <select id="report-category" class="form-select" required>
+                    <option value="" disabled selected>-- Select Municipal Department --</option>
+                    <option value="Water Supply">Water Supply & Pipeline</option>
+                    <option value="Sanitation">Public Sanitation & Hygiene</option>
+                    <option value="Garbage Collection">Garbage Collection & Waste</option>
+                    <option value="Road Damage">Road Damage & Potholes</option>
+                    <option value="Streetlight">Streetlight & Illumination</option>
+                    <option value="Electricity">Electricity & Transformer</option>
+                    <option value="Drainage">Drainage & Stormwater</option>
+                    <option value="Public Safety">Public Safety & Open Manhole</option>
+                    <option value="Other">Other Civic Grievance</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="report-location" class="form-label">Locality / Sector / Ward <span class="req">*</span></label>
+                  <input type="text" id="report-location" class="form-control" placeholder="e.g. Sector 14, Main Road" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="report-landmark" class="form-label">Prominent Landmark (Optional)</label>
+                <input type="text" id="report-landmark" class="form-control" placeholder="e.g. Near Metro Gate 2 / Opposite Arya Samaj Mandir">
+              </div>
+
+              <div class="form-group">
+                <label for="report-title" class="form-label">Short Issue Summary / Title <span class="req">*</span></label>
+                <input type="text" id="report-title" class="form-control" placeholder="e.g. Deep crater potholes causing two-wheeler skids" required maxlength="120">
+              </div>
+
+              <div class="form-group">
+                <label for="report-desc" class="form-label">Detailed Description of Problem <span class="req">*</span></label>
+                <textarea id="report-desc" class="form-textarea" rows="4" placeholder="Describe the severity, duration, and safety impact on residents (minimum 20 characters)..." required></textarea>
+                <div class="char-counter" id="desc-char-counter">0 / 800 characters</div>
+              </div>
+
+              <!-- Priority Selection Cards -->
+              <div class="form-group">
+                <label class="form-label">Urgency & Priority Level <span class="req">*</span></label>
+                <div class="priority-selector-grid">
+                  <label class="priority-select-card">
+                    <input type="radio" name="priority" value="Low">
+                    <span class="prio-title">Low</span>
+                    <span class="prio-sub">Minor cosmetic issue</span>
+                  </label>
+
+                  <label class="priority-select-card is-selected">
+                    <input type="radio" name="priority" value="Medium" checked>
+                    <span class="prio-title">Medium</span>
+                    <span class="prio-sub">Standard routine repair</span>
+                  </label>
+
+                  <label class="priority-select-card">
+                    <input type="radio" name="priority" value="High">
+                    <span class="prio-title" style="color: #ea580c;">High</span>
+                    <span class="prio-sub">Impacting daily traffic/health</span>
+                  </label>
+
+                  <label class="priority-select-card prio-critical">
+                    <input type="radio" name="priority" value="Critical">
+                    <span class="prio-title" style="color: #dc2626;">Critical</span>
+                    <span class="prio-sub">Immediate hazard to life</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Image Attachment UI -->
+              <div class="form-group">
+                <label class="form-label">Photographic Evidence (Optional)</label>
+                
+                <input type="file" id="report-image-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
+                
+                <div class="image-dropzone" id="image-dropzone">
+                  <div class="dropzone-icon">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  </div>
+                  <div class="dropzone-text">
+                    <strong>Click to upload</strong> or drag and drop photo
+                  </div>
+                  <small class="text-xs text-muted">PNG, JPG or WEBP (Max 3MB)</small>
+                </div>
+
+                <!-- Preview container -->
+                <div id="image-preview-wrap" style="display: none;">
+                  <div class="image-preview-box">
+                    <img id="image-preview" src="" alt="Incident evidence preview">
+                    <button type="button" class="image-remove-btn" id="remove-image-btn" title="Remove attachment">&times;</button>
+                  </div>
+                </div>
+
+                <!-- Quick Sample Photos for Testing -->
+                <div class="sample-photo-bar">
+                  <span class="text-xs text-muted">Or pick sample demo photo:</span>
+                  <button type="button" class="sample-photo-btn" data-sample="pothole">Pothole</button>
+                  <button type="button" class="sample-photo-btn" data-sample="streetlight">Streetlight</button>
+                  <button type="button" class="sample-photo-btn" data-sample="garbage">Garbage</button>
+                  <button type="button" class="sample-photo-btn" data-sample="water">Water Leak</button>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="mt-4 pt-3 border-top">
+                <button type="submit" class="btn btn-primary btn-lg btn-full" id="report-submit-btn">
+                  Submit Complaint & Get Tracking ID
+                </button>
+                <p class="text-xs text-center text-muted mt-2">
+                  By submitting, your complaint will be logged into the municipal transparent records.
+                </p>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: TRACK COMPLAINTS -->
+      <section id="view-track" class="app-view" aria-label="Track a complaint by ID">
+        <div class="container section-block">
+          
+          <div class="track-header-box">
+            <span class="section-tag">Real-Time Redressal Tracking</span>
+            <h1 class="section-title">Track Your Complaint</h1>
+            <p class="section-subtitle">
+              Enter your complaint tracking number (e.g. <code>CF-2026-48291</code>) to view the live status, engineering officer notes, and milestone progression.
+            </p>
+
+            <form id="track-search-form" class="track-search-bar" novalidate>
+              <input type="text" id="track-search-input" class="form-control" placeholder="Enter Complaint ID (e.g. CF-2026-48291)" required>
+              <button type="submit" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Track Now
+              </button>
+            </form>
+
+            <div class="quick-track-pills-wrap">
+              <span>Quick Test Active IDs:</span>
+              <div id="quick-track-samples" class="flex-gap-2">
+                <!-- Injected via App.renderQuickTrackPills() -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty Default State before search -->
+          <div id="track-empty-state" class="empty-state-card">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </div>
+            <h3 class="empty-state-title">No Complaint Loaded Yet</h3>
+            <p class="empty-state-subtitle">Type your complaint ID above or click any of the sample active IDs to inspect the full timeline.</p>
+          </div>
+
+          <!-- Tracking Result Container (Filled dynamically by App.trackComplaint) -->
+          <div id="track-result-container" style="display: none;">
+            <!-- Rendered by App.trackComplaint(id) -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 4: CITIZEN DASHBOARD -->
+      <section id="view-dashboard" class="app-view" aria-label="Citizen portal dashboard">
+        <div class="container section-block">
+          
+          <div class="dashboard-head-banner">
+            <div>
+              <h1 id="citizen-greeting">Good morning, Citizen 👋</h1>
+              <p class="text-muted">Manage your grievances, monitor status updates, and view neighborhood complaint history.</p>
+            </div>
+            <div class="flex-gap-2">
+              <button type="button" class="btn btn-primary" data-view-target="report">
+                + Report New Issue
+              </button>
+            </div>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div class="stats-grid mb-4">
+            <div class="stat-item">
+              <div class="stat-icon blue">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="dash-stat-total">0</span>
+                <span class="stat-label">Total Reported</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon purple">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="dash-stat-pending">0</span>
+                <span class="stat-label">Pending Review</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon amber">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="dash-stat-progress">0</span>
+                <span class="stat-label">Active / In Progress</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon green">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="dash-stat-resolved">0</span>
+                <span class="stat-label">Resolved Issues</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search, Filters, and Sort Toolbar -->
+          <div class="dashboard-toolbar">
+            <div class="toolbar-search">
+              <span class="search-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </span>
+              <input type="text" id="dash-search-input" class="form-control" placeholder="Search by ID, title, location, category...">
+            </div>
+
+            <div class="toolbar-filters">
+              <select id="dash-filter-category" class="form-select form-select-sm" aria-label="Filter by Category">
+                <option value="all">All Categories</option>
+                <option value="Water Supply">Water Supply</option>
+                <option value="Sanitation">Sanitation</option>
+                <option value="Garbage Collection">Garbage</option>
+                <option value="Road Damage">Road Damage</option>
+                <option value="Streetlight">Streetlight</option>
+                <option value="Electricity">Electricity</option>
+                <option value="Drainage">Drainage</option>
+                <option value="Public Safety">Public Safety</option>
+                <option value="Other">Other</option>
+              </select>
+
+              <select id="dash-filter-status" class="form-select form-select-sm" aria-label="Filter by Status">
+                <option value="all">All Statuses</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Under Review">Under Review</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+
+              <select id="dash-filter-priority" class="form-select form-select-sm" aria-label="Filter by Priority">
+                <option value="all">All Priorities</option>
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+
+              <select id="dash-sort-select" class="form-select form-select-sm" aria-label="Sort complaints">
+                <option value="newest">Sort: Newest First</option>
+                <option value="oldest">Sort: Oldest First</option>
+                <option value="priority-high">Sort: Priority (High to Low)</option>
+                <option value="priority-low">Sort: Priority (Low to High)</option>
+              </select>
+
+              <!-- View Mode Toggle -->
+              <div class="view-mode-toggle">
+                <button type="button" class="view-mode-btn is-active" id="dash-view-table" title="Table View">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </button>
+                <button type="button" class="view-mode-btn" id="dash-view-grid" title="Cards Grid View">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </button>
+              </div>
+
+              <button type="button" class="btn btn-sm btn-ghost" id="dash-clear-filters-btn" title="Reset all filters">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Count Indicator -->
+          <div class="flex-between align-center mb-2 px-1">
+            <span class="text-xs text-muted" id="dash-results-count">Showing 12 complaints</span>
+          </div>
+
+          <!-- Table View Container -->
+          <div class="data-table-card" id="dash-table-container">
+            <div class="table-responsive">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Issue Summary & Location</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="citizen-table-tbody">
+                  <!-- Populated via App.renderCitizenComplaintsList() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Grid View Container -->
+          <div class="citizen-grid-container" id="dash-grid-container" style="display: none;">
+            <!-- Populated via App.renderCitizenComplaintsList() in grid mode -->
+          </div>
+
+          <!-- Empty State When No Complaints Match Filters -->
+          <div id="dash-empty-state" class="empty-state-card" style="display: none;">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <h3 class="empty-state-title">No Matching Complaints Found</h3>
+            <p class="empty-state-subtitle">None of the complaints match your active search and filter settings.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="btn-dash-empty-reset" onclick="document.getElementById('dash-clear-filters-btn').click();">
+              Clear All Filters
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 5: ADMIN-STYLE DASHBOARD & ANALYTICS -->
+      <section id="view-admin" class="app-view" aria-label="Admin operations console">
+        <div class="container container-wide section-block">
+          
+          <div class="admin-disclaimer-banner">
+            <div>
+              <strong>Municipal Authority Operations Console</strong> &bull; Frontend Demonstration Mode (No Authentication Required)
+            </div>
+            <div class="flex-gap-2">
+              <button type="button" class="btn btn-xs btn-outline-secondary" style="color: #fff; border-color: rgba(255,255,255,0.4);" id="btn-export-csv">
+                Export CSV
+              </button>
+              <button type="button" class="btn btn-xs btn-outline-secondary" style="color: #fff; border-color: rgba(255,255,255,0.4);" id="btn-export-json">
+                Export JSON
+              </button>
+              <button type="button" class="btn btn-xs btn-outline-danger" id="btn-reset-demo-data">
+                Reset Demo Data
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-between align-center mb-4">
+            <div>
+              <h1 class="text-2xl font-bold">Civic Redressal Analytics & Management</h1>
+              <p class="text-muted text-sm">Monitor department workloads, inspect real-time resolution rates, and change complaint statuses inline.</p>
+            </div>
+          </div>
+
+          <!-- KPI Summary Cards -->
+          <div class="stats-grid-6 mb-4">
+            <div class="stat-item">
+              <div class="stat-icon blue">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-total">12</span>
+                <span class="stat-label">Total Reports</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon purple">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-pending">3</span>
+                <span class="stat-label">New / Pending</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon blue" style="background-color: var(--teal-50); color: var(--teal-600);">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-review">3</span>
+                <span class="stat-label">Under Review</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon amber">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-progress">4</span>
+                <span class="stat-label">In Progress</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon green">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-resolved">4</span>
+                <span class="stat-label">Resolved</span>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon green" style="background-color: var(--primary-50); color: var(--primary-600);">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-number" id="admin-kpi-rate">75%</span>
+                <span class="stat-label">Resolution Rate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visualizations Grid (Zero External Libs - Pure SVG/CSS!) -->
+          <div class="admin-charts-grid">
+            
+            <!-- Category Workload Chart -->
+            <div class="card">
+              <div class="chart-card-header">
+                <h3>Complaints by Department / Category</h3>
+                <span class="text-xs text-muted">Distribution breakdown</span>
+              </div>
+              <div id="admin-chart-category">
+                <!-- Rendered by UIService.renderCategoryChart() -->
+              </div>
+            </div>
+
+            <!-- Status Donut Chart -->
+            <div class="card">
+              <div class="chart-card-header">
+                <h3>Resolution Status Breakdown</h3>
+                <span class="text-xs text-muted">Active lifecycle ratios</span>
+              </div>
+              <div id="admin-chart-status">
+                <!-- Rendered by UIService.renderStatusDonutChart() -->
+              </div>
+            </div>
+
+            <!-- Priority Distribution -->
+            <div class="card">
+              <div class="chart-card-header">
+                <h3>Severity & Priority Distribution</h3>
+                <span class="text-xs text-muted">Critical triage split</span>
+              </div>
+              <div id="admin-chart-priority">
+                <!-- Rendered by UIService.renderPriorityBar() -->
+              </div>
+            </div>
+
+            <!-- Inflow vs Resolution Trend -->
+            <div class="card">
+              <div class="chart-card-header">
+                <h3>Weekly Intake vs Resolution Velocity</h3>
+                <span class="text-xs text-muted">Last 7 calendar days</span>
+              </div>
+              <div id="admin-chart-trend">
+                <!-- Rendered by UIService.renderWeeklyTrendChart() -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Authority Operations Management Table -->
+          <div class="card">
+            <div class="flex-between align-center mb-3">
+              <div>
+                <h3 class="text-lg font-bold">Complaint Queue & Dispatch Control</h3>
+                <span class="text-xs text-muted">Change any status directly from the dropdown to automatically update LocalStorage and refresh statistics.</span>
+              </div>
+              
+              <div class="flex-gap-2">
+                <input type="text" id="admin-search-input" class="form-control form-control-sm" placeholder="Filter admin records..." style="width: 220px;">
+                <select id="admin-filter-category" class="form-select form-select-sm" style="width: 150px;">
+                  <option value="all">All Departments</option>
+                  <option value="Water Supply">Water Supply</option>
+                  <option value="Sanitation">Sanitation</option>
+                  <option value="Garbage Collection">Garbage</option>
+                  <option value="Road Damage">Roads</option>
+                  <option value="Streetlight">Streetlights</option>
+                  <option value="Electricity">Electricity</option>
+                  <option value="Drainage">Drainage</option>
+                  <option value="Public Safety">Safety</option>
+                </select>
+                <select id="admin-filter-status" class="form-select form-select-sm" style="width: 140px;">
+                  <option value="all">All Statuses</option>
+                  <option value="Submitted">Submitted</option>
+                  <option value="Under Review">Under Review</option>
+                  <option value="Assigned">Assigned</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Citizen Contact</th>
+                    <th>Issue Summary & Locality</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Change Status</th>
+                    <th>Date Lodged</th>
+                    <th style="text-align: right;">Operations</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-table-tbody">
+                  <!-- Populated via App.renderAdminComplaintsTable() -->
+                </tbody>
+              </table>
+            </div>
+
+            <div id="admin-table-empty" class="empty-state-card" style="display: none; border: none;">
+              <p>No complaints match the admin filters.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 6: ABOUT / HOW IT WORKS -->
+      <section id="view-about" class="app-view" aria-label="About CivicFix portal">
+        <div class="container section-block">
+          
+          <div class="about-hero">
+            <span class="section-tag">Empowering Citizens</span>
+            <h1 class="section-title">About CivicFix Governance Platform</h1>
+            <p class="section-subtitle">
+              CivicFix is a modern citizen redressal architecture designed to eliminate bureaucratic delay and provide open, transparent resolution for essential urban civic services.
+            </p>
+          </div>
+
+          <div class="about-features-grid">
+            <div class="feature-box">
+              <div class="cat-icon-bubble" style="background: var(--primary-50); color: var(--primary-600);">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h4>Citizen-Centric SLA</h4>
+              <p>Guaranteed response timeframes based on severity: 12 hours for critical hazards (sparking lines, open manholes) and 48 hours for standard municipal repairs.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="cat-icon-bubble" style="background: var(--teal-50); color: var(--teal-600);">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <h4>Direct Department Routing</h4>
+              <p>Grievances bypass intermediate paperwork and are routed directly to junior engineers, electrical linemen, and solid waste compactor fleets.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="cat-icon-bubble" style="background: var(--purple-bg); color: var(--purple-solid);">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h4>Immutable Audit Trails</h4>
+              <p>Every status transition from Submitted to Resolved logs the acting authority, date, and field report for complete democratic accountability.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="container-narrow" style="margin: 0 auto;">
+            <div class="text-center mb-4">
+              <h2 class="section-title text-xl">Frequently Asked Questions</h2>
+            </div>
+
+            <details class="faq-card" open>
+              <summary>How do I track my submitted complaint?</summary>
+              <p>Once you submit a report, CivicFix generates a unique 10-character code (e.g. <code>CF-2026-48291</code>). You can input this code in the Track Complaint view anytime to check real-time officer notes and photo updates.</p>
+            </details>
+
+            <details class="faq-card">
+              <summary>Can I delete or cancel a complaint?</summary>
+              <p>Yes. Citizens can manage and remove their records from the Citizen Dashboard or the complaint details view.</p>
+            </details>
+
+            <details class="faq-card">
+              <summary>How are priority levels handled?</summary>
+              <p>Complaints marked <strong>Critical</strong> (such as sparking electrical transformers or missing manhole covers) trigger instant notifications at the ward emergency desk for immediate on-site barricading within 2 hours.</p>
+            </details>
+
+            <details class="faq-card">
+              <summary>Where is my complaint data stored?</summary>
+              <p>This demonstration portal uses the browser's persistent LocalStorage engine. All your reports, status changes, and filter preferences remain intact across page reloads.</p>
+            </details>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ======================================================================
+         3. SITE FOOTER
+         ====================================================================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          
+          <div class="footer-brand">
+            <h4>CivicFix</h4>
+            <p>Making communities better, one report at a time. Empowering citizens through direct municipal collaboration and open tracking.</p>
+            <div class="mt-3 text-xs text-muted">
+              Built with HTML5, CSS3, Vanilla JavaScript, and LocalStorage.
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h5>Quick Navigation</h5>
+            <ul class="footer-links">
+              <li><a href="#landing" data-view-target="landing">Home</a></li>
+              <li><a href="#report" data-view-target="report">Report an Issue</a></li>
+              <li><a href="#track" data-view-target="track">Track Complaints</a></li>
+              <li><a href="#dashboard" data-view-target="dashboard">Citizen Dashboard</a></li>
+              <li><a href="#admin" data-view-target="admin">Admin Console</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Civic Services</h5>
+            <ul class="footer-links">
+              <li><a href="#report" data-view-target="report">Water Supply Redressal</a></li>
+              <li><a href="#report" data-view-target="report">Road Pothole Patching</a></li>
+              <li><a href="#report" data-view-target="report">Streetlight Illumination</a></li>
+              <li><a href="#report" data-view-target="report">Solid Waste Lifting</a></li>
+              <li><a href="#report" data-view-target="report">Stormwater Desilting</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>Civic Helpline Desk</h5>
+            <p class="text-sm text-muted mb-2">Toll-Free Grievance Center: <strong>1800-11-2026</strong></p>
+            <p class="text-sm text-muted mb-2">Disaster Emergency Cell: <strong>112 / 108</strong></p>
+            <p class="text-xs text-muted">Hours: 24 Hours &bull; 7 Days a Week</p>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; 2026 CivicFix. Frontend demonstration civic-tech application.
+          </div>
+          <div>
+            Designed for Community Service &amp; Transparent Civic Governance.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ======================================================================
+       4. REUSABLE MODALS
+       ====================================================================== -->
+
+  <!-- Modal: Submission Success -->
+  <div class="modal-overlay" id="modal-submission-success" role="dialog" aria-modal="true" aria-labelledby="modal-success-heading">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-success-heading" style="color: var(--success-solid); display: flex; align-items: center; gap: 0.5rem;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Complaint Lodged Successfully
+        </h3>
+        <button type="button" class="modal-close-trigger" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="text-muted text-sm mb-3">Your grievance has been registered into the municipal control queue.</p>
+        
+        <div style="background: var(--neutral-50); border: 2px dashed var(--primary-300); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+          <span class="text-xs text-muted uppercase font-bold">Your Unique Tracking ID:</span>
+          <div id="modal-success-id" class="badge-id-large mt-1 mb-2" style="display: inline-block;">CF-2026-XXXXX</div>
+          <div>
+            <button type="button" class="btn btn-xs btn-outline-primary" id="modal-success-copy-btn">
+              Copy Tracking ID
+            </button>
+          </div>
+        </div>
+
+        <div class="text-left" style="background: var(--neutral-50); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem;">
+          <div class="flex-between mb-1">
+            <span class="text-muted">Issue:</span>
+            <strong id="modal-success-title">Road Damage</strong>
+          </div>
+          <div class="flex-between mb-1">
+            <span class="text-muted">Category:</span>
+            <strong id="modal-success-cat">Roads</strong>
+          </div>
+          <div class="flex-between">
+            <span class="text-muted">Timestamp:</span>
+            <span id="modal-success-date">Just now</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" onclick="UIService.closeModal('modal-submission-success');">
+          Report Another Issue
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-success-track-btn">
+          Track This Complaint &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Complaint Details (Rich View) -->
+  <div class="modal-overlay" id="modal-complaint-detail" role="dialog" aria-modal="true" aria-labelledby="modal-detail-heading">
+    <div class="modal-dialog modal-dialog-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-detail-heading">Complaint File Details</h3>
+        <button type="button" class="modal-close-trigger" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-detail-body">
+        <!-- Injected via App.openComplaintDetailModal(id) -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" onclick="window.print();">
+          Print Record
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-detail-track-btn">
+          Open in Tracking View
+        </button>
+        <button type="button" class="btn btn-outline-primary" onclick="UIService.closeModal('modal-complaint-detail');">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Admin Status Update Confirmation -->
+  <div class="modal-overlay" id="modal-status-update" role="dialog" aria-modal="true" aria-labelledby="modal-status-heading">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-status-heading">Update Complaint Status</h3>
+        <button type="button" class="modal-close-trigger" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-sm text-muted mb-3">You are updating the operational status for complaint <strong id="status-modal-id">CF-2026-XXXX</strong>.</p>
+        
+        <div class="flex-between align-center p-3 mb-3" style="background: var(--neutral-50); border-radius: var(--radius-md); border: 1px solid var(--neutral-200);">
+          <div>
+            <span class="text-xs text-muted block">Current Status</span>
+            <div id="status-modal-current" class="mt-1"></div>
+          </div>
+          <div class="text-muted font-bold">&rarr;</div>
+          <div>
+            <span class="text-xs text-muted block">New Status</span>
+            <div id="status-modal-new" class="mt-1"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status-modal-note" class="form-label">Authority Activity Note (Optional)</label>
+          <input type="text" id="status-modal-note" class="form-control" placeholder="e.g. Repair crew allocated; spare parts dispatched from stores.">
+          <small class="text-xs text-muted mt-1">This note will appear in the public tracking timeline for the citizen.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" id="status-modal-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn-primary" id="status-modal-confirm-btn">Confirm Status Update</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Delete Confirmation -->
+  <div class="modal-overlay" id="modal-delete-confirm" role="dialog" aria-modal="true" aria-labelledby="modal-delete-heading">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title text-danger" id="modal-delete-heading" style="color: var(--danger-solid);">
+          Delete Complaint Record
+        </h3>
+        <button type="button" class="modal-close-trigger" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">Are you sure you want to permanently delete complaint <strong id="delete-modal-id">CF-2026-XXXX</strong>?</p>
+        <p class="text-sm text-muted" id="delete-modal-title"></p>
+        <div class="mt-3 p-3" style="background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-md); font-size: 0.85rem; color: var(--danger-text);">
+          <strong>Warning:</strong> This will remove the complaint from LocalStorage immediately.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" onclick="UIService.closeModal('modal-delete-confirm');">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" id="delete-modal-confirm-btn">Delete Permanently</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reset Demo Data Confirmation -->
+  <div class="modal-overlay" id="modal-reset-demo" role="dialog" aria-modal="true" aria-labelledby="modal-reset-heading">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-reset-heading">Restore Demo Dataset</h3>
+        <button type="button" class="modal-close-trigger" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This will restore the 12 default realistic community complaints into your browser LocalStorage.</p>
+        <p class="text-sm text-muted mt-2">Useful for fresh demonstration of search, filtering, and status workflows.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" onclick="UIService.closeModal('modal-reset-demo');">Cancel</button>
+        <button type="button" class="btn btn-primary" id="reset-demo-confirm-btn">Restore Sample Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Image Lightbox -->
+  <div class="modal-overlay" id="modal-lightbox" role="dialog" aria-modal="true" aria-label="Image Preview">
+    <div class="modal-dialog lightbox-dialog">
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Enlarged complaint evidence">
+        <div class="flex-between align-center p-2">
+          <span class="lightbox-caption" id="lightbox-caption">Incident Evidence</span>
+          <button type="button" class="btn btn-xs btn-outline-secondary" style="color: #fff; border-color: rgba(255,255,255,0.4);" onclick="UIService.closeModal('modal-lightbox');">Close &times;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ======================================================================
+       5. CORE JAVASCRIPT MODULES
+       ====================================================================== -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
